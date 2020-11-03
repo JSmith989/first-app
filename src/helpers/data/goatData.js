@@ -1,20 +1,14 @@
 import axios from 'axios';
 
+const baseUrl = 'https://fir-cows-958ae.firebaseio.com/react-goats';
+
 const getGoats = () => new Promise((resolve, reject) => {
   axios
-    .get('https://fir-cows-958ae.firebaseio.com/react-goats.json')
+    .get(`${baseUrl}.json`)
     .then((response) => {
-      const goats = response.data;
-      const goatArray = [];
-      if (goats) {
-        Object.keys(goats).forEach((goatId) => {
-          goatArray.push(goats[goatId]);
-        });
-      }
-      console.warn(goatArray);
-      resolve(goatArray);
+      resolve(response.data);
     })
     .catch((error) => reject(error));
 });
 
-export default getGoats;
+export default { getGoats };
