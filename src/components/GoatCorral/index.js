@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import goatData from '../../helpers/data/goatData';
+import Goat from '../Goat';
 
 class GoatCorral extends Component {
   state = {
@@ -14,13 +15,16 @@ class GoatCorral extends Component {
     });
   }
 
-  renderGoatToDom = () => this.state.goats.map((goat) => goat.name);
-
   render() {
+    const { goats } = this.state;
+
+    const renderGoatToDom = () => (
+      goats.map((goat) => <Goat key={goat.id} goat={goat} />)
+    );
+
     return (
       <div>
-        <h1>Goat Corral</h1>
-        {this.renderGoatToDom()}
+        {renderGoatToDom()}
       </div>
     );
   }
