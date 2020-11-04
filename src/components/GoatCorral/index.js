@@ -15,15 +15,23 @@ class GoatCorral extends Component {
     });
   }
 
+  removeGoat = (e) => {
+    const removedGoat = this.state.goats.filter((goat) => goat.id !== e.target.id);
+
+    this.setState({
+      goats: removedGoat,
+    });
+  }
+
   render() {
     const { goats } = this.state;
 
     const renderGoatToDom = () => (
-      goats.map((goat) => <Goat key={goat.id} goat={goat} />)
+      goats.map((goat) => <Goat key={goat.id} goat={goat} removeGoat={this.removeGoat}/>)
     );
 
     return (
-      <div>
+      <div className='GoatCoral d-flex flex-wrap'>
         {renderGoatToDom()}
       </div>
     );

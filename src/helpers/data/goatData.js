@@ -6,7 +6,7 @@ const getGoats = () => new Promise((resolve, reject) => {
   axios
     .get(`${baseUrl}.json`)
     .then((response) => {
-      resolve(response.data);
+      resolve(Object.values(response.data));
     })
     .catch((error) => reject(error));
 });
